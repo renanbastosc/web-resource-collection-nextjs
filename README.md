@@ -1,0 +1,1 @@
+# web-resource-collection-nextjs
