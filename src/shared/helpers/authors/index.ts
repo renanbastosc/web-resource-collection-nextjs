@@ -9,6 +9,12 @@ export const getAuthorsByResourceId = async (resourceId) => {
   return response.data._embedded.authors;
 }
 
+export const getResourcesByAuthorId = async (eventId) => {
+  const response = await axios.get(`${apiUrl}/authors/${eventId}/resources`)
+
+  return response.data._embedded.resources;
+}
+
 export const getAuthors = async (sort = '') => {
   const response = await axios.get(`${apiUrl}/authors${sort}`)
 
@@ -17,10 +23,19 @@ export const getAuthors = async (sort = '') => {
   return data._embedded.authors
 }
 
+// export const showAuthor = async (id) => {
+//   const response = await axios.get(`${apiUrl}/authors/${id}`)
+
+//   return response.data
+// }
+
 export const showAuthor = async (id) => {
   const response = await axios.get(`${apiUrl}/authors/${id}`)
 
-  return response.data
+  const event = response.data;
+  event.resources = await getResourcesByAuthorId(event.id);
+
+  return event
 }
 
 export const saveAuthor = async (authorObject) => {

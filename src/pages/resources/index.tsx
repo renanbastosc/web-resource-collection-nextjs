@@ -27,7 +27,7 @@ const Resources = ({ resources }) => {
       catch(e){
         Swal.fire(
           'Ops!',
-          e.response.status == 409 ? 'Conflito. Este recurso está associado a um curso.' : 'Erro ao remover.',
+          e.response.status == 409 ? 'Não foi possível excluir. Este recurso possui uma associação.' : 'Erro ao remover.',
           'error'
         )
       }

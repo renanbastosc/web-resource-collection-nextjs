@@ -27,7 +27,7 @@ const HomePage = ({ courses }) => {
       catch(e){
         Swal.fire(
           'Ops!',
-          e.response.status == 409 ? 'Conflito! Curso associado.' : 'Erro ao remover.',
+          e.response.status == 409 ? 'Não foi possível excluir. Este curso possui uma associação.' : 'Erro ao remover.',
           'error'
         )
       }

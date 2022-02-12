@@ -21,6 +21,7 @@ const Resource = (props) => {
         <>
           <h3>{event.title}</h3>
           <p>{event.description}</p>
+          <p>Começa em {event.startAt} e termina em {event.endAt}</p>
           <p>
             <b>Recursos:</b><br/>
             <ul>

@@ -27,7 +27,7 @@ const HomePage = ({ events }) => {
       catch(e){
         Swal.fire(
           'Ops!',
-          e.response.status == 409 ? 'Conflito. Evento associado.' : 'Erro ao remover.',
+          e.response.status == 409 ? 'Não foi possível excluir. Este evento possui uma associação.' : 'Erro ao remover.',
           'error'
         )
       }

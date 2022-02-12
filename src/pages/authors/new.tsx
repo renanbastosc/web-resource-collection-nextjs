@@ -1,55 +1,53 @@
-import { saveResource, showResource } from '@Helpers/resources'
-import { getAuthors } from '@Helpers/authors'
+import { saveAuthor, showAuthor } from '@Helpers/authors'
+import { getResources } from '@Helpers/resources'
 import { useEffect, useState } from 'react'
 import Router from 'next/router'
 
 import Template from '@Templates/index'
 import { useRouter } from 'next/router';
 
-const defaultResourceData = {
-  title: "",
-  description: "",
-  link: "",
-  image: "",
-  createdAt: "",
-  registeredAt: "",
-  keywords: "",
-  authors: []
+const defaultAuthorData = {
+  name: "",
+  lastName: "",
+  email: "",
+  affiliation: "",
+  orcid: "",
+  resources: []
 }
 
-const NewResource = (props) => {
-  const [resourceData, setResourceData] = useState(defaultResourceData)
-  const [authors, setAuthors] = useState([])
+const NewAuthor = (props) => {
+  const [authorData, setAuthorData] = useState(defaultAuthorData)
+  const [resources, setResources] = useState([])
 
   useEffect(()=>{
-    getAuthors().then(authors=>{
-      setAuthors(authors)
+    getResources().then(resources=>{
+      setResources(resources)
     })
   }, [])
 
   async function submit(e) {
     e.preventDefault();
 
-    const response = await saveResource(resourceData)
+    const response = await saveAuthor(authorData)
 
-    setResourceData(defaultResourceData)
-    Router.push('/resources')
+    setAuthorData(defaultAuthorData)
+    Router.push('/authors')
   }
 
   function inputChange(e){
-    const data = { ...resourceData}
+    const data = { ...authorData}
     data[e.target.name] = e.target.value
 
-    setResourceData(data)
+    setAuthorData(data)
   }
 
-  function authorsChange(e){
+  function resourcesChange(e){
     const updatedOptions = [...e.target.options].filter(option => option.selected)
                                                 .map(x => x.value);
 
-    const data = {...resourceData, authors: updatedOptions};
+    const data = {...authorData, resources: updatedOptions};
 
-    setResourceData(data)
+    setAuthorData(data)
   }
 
   return (
@@ -58,53 +56,37 @@ const NewResource = (props) => {
 
       <form onSubmit={submit}>
         <div className="mb-3">
-          <label htmlFor="title">Título</label>        
-          <input type="text" className="form-control" id="title" name="title" value={resourceData.title} onChange={inputChange}/>
+          <label htmlFor="name">Nome</label>        
+          <input type="text" className="form-control" id="name" name="name" value={authorData.name} onChange={inputChange}/>
+        </div>
+        
+        <div className="mb-3">
+          <label htmlFor="lastName">Sobrenome</label>        
+          <input type="text" className="form-control" id="lastName" name="lastName" value={authorData.lastName} onChange={inputChange}/>
         </div>
 
        <div className="mb-3">
-          <label htmlFor="description">Descrição</label>
-          <textarea className="form-control" id="description" name="description" value={resourceData.description} onChange={inputChange}></textarea>
+          <label htmlFor="affiliation">Afiliação</label>
+          <textarea className="form-control" id="affiliation" name="affiliation" value={authorData.affiliation} onChange={inputChange}></textarea>
         </div>
 
         <div className="mb-3">
-          <label htmlFor="link">Link</label>
-          <input type="url" className="form-control" id="link" name="link"  value={resourceData.link} onChange={inputChange}/>
+          <label htmlFor="orcid">Orcid</label>
+          <input type="text" className="form-control" id="orcid" name="orcid"  value={authorData.orcid} onChange={inputChange}/>
         </div>
 
         <div className="mb-3">
-          <label htmlFor="image">Imagem</label>
-          <input type="url" className="form-control" id="image" name="image"  value={resourceData.image} onChange={inputChange}/>
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="createdAt">Criado em</label>
-          <input type="date" className="form-control" id="createdAt" name="createdAt"  value={resourceData.createdAt} onChange={inputChange}/>
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="registeredAt">Registrado em</label>
-          <input type="date" className="form-control" id="registeredAt" name="registeredAt"  value={resourceData.registeredAt} onChange={inputChange}/>
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="keywords">Palavras-chaves</label>
-          <input type="text" className="form-control" id="keywords" name="keywords" aria-describedby="keywordsHelp" value={resourceData.keywords} onChange={inputChange}/>
-          <small id="keywordsHelp" className="form-text">Separado por vírgulas.</small>
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="authors">Autores</label>
-          <select name="authors" size="3" className="form-select" id="authors" value={resourceData.authors} onChange={authorsChange} multiple>
-          { authors.map((author, i) => (<option key={i} value={author._links.self.href}>{author.name}</option>)) }
+          <label htmlFor="resources">Recursos</label>
+          <select name="resources" size="3" className="form-select" id="resources" value={authorData.resources} onChange={resourcesChange} multiple>
+          { resources.map((resource, i) => (<option key={i} value={resource._links.self.href}>{resource.title}</option>)) }
           </select>
         </div>
 
         <button type="submit" className="btn btn-primary">Cadastrar</button>
-        <a href="/resources" className="btn btn-secondary ms-2">Voltar</a>
+        <a href="/authors" className="btn btn-secondary ms-2">Voltar</a>
       </form>
     </Template>
   )
 }
 
-export default NewResource
+export default NewAuthor
