@@ -78,8 +78,8 @@ const EditCourse = (props) => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="startAt">Registrado em</label>
-          <input type="date" className="form-control" id="startAt" name="startAt"  value={courseData.startAt} onChange={inputChange} pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
+          <label htmlFor="registerAt">Registrado em</label>
+          <input type="date" className="form-control" id="registerAt" name="registerAt"  value={courseData.registerAt} onChange={inputChange} pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
         </div>
 
         <div className="mb-3">

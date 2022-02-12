@@ -68,10 +68,10 @@ const NewCourse = (props) => {
           <label htmlFor="image">Imagem</label>
           <input type="url" className="form-control" id="image" name="image"  value={courseData.image} onChange={inputChange}/>
         </div>
-
+        
         <div className="mb-3">
           <label htmlFor="registeredAt">Registrado em</label>
-          <input type="date" className="form-control" id="registeredAt" name="registeredAt"  value={courseData.registeredAt} onChange={inputChange}/>
+          <input type="date" className="form-control" id="registeredAt" name="registeredAt"  value={courseData.registerAt} onChange={inputChange}/>
         </div>
 
         <div className="mb-3">
