@@ -21,6 +21,7 @@ const Resource = (props) => {
         <>
           <h3>{course.title}</h3>
           <p>{course.description}</p>
+          <p>Registrado em {course.registerAt}</p>
           <p>
             <b>Recursos:</b><br/>
             <ul>

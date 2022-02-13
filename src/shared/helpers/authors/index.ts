@@ -45,7 +45,7 @@ export const saveAuthor = async (authorObject) => {
 }
 
 export const updateAuthor = async (id, authorObject) => {
-  const response = await axios.put(`${apiUrl}/authors/${id}`, authorObject)
+  const response = await axios.patch(`${apiUrl}/authors/${id}`, authorObject)
 
   return response.data
 }
