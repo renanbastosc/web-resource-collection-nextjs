@@ -63,6 +63,11 @@ const NewAuthor = (props) => {
         <div className="mb-3">
           <label htmlFor="lastName">Sobrenome</label>        
           <input type="text" className="form-control" id="lastName" name="lastName" value={authorData.lastName} onChange={inputChange}/>
+        </div>        
+
+        <div className="mb-3">
+          <label htmlFor="email">Email</label>        
+          <input type="text" className="form-control" id="email" name="email" value={authorData.email} onChange={inputChange}/>
         </div>
 
        <div className="mb-3">

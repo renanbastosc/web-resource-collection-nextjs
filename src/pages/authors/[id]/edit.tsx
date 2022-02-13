@@ -92,7 +92,7 @@ const EditAuthor = (props) => {
         <div className="mb-3">
           <label htmlFor="resources">Recursos</label>
           <select name="resources" size="3" className="form-select" id="resources" value={authorData.resources} onChange={resourcesChange} multiple>
-          { resources.map((resource, i) => (<option key={i} value={resource._links.self.href}>{resource.name}</option>)) }
+          { resources.map((resource, i) => (<option key={i} value={resource._links.self.href}>{resource.title}</option>)) }
           </select>
         </div>
 
