@@ -25,7 +25,7 @@ const HomePage = ({ events, courses, resources }) => {
       <div className="list-group">
         {events.map((event) => (
           <a
-            href="#"
+            href={`events/${event.id}`}
             key={event.id}
             className="list-group-item list-group-item-action"
           >
@@ -38,7 +38,7 @@ const HomePage = ({ events, courses, resources }) => {
       <div className="list-group">
         {courses.map((course) => (
           <a
-            href="#"
+            href={`courses/${course.id}`}
             key={course.id}
             className="list-group-item list-group-item-action"
           >
